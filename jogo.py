@@ -3,15 +3,12 @@ from aux_funcs import limpar_tela
 from time import sleep
 
 h = Hangman()
-print(h.palavra)
+limpar_tela()
+print('\n' * 3)
+print('-' * 15, end=' ')
+print('BEM VNDO AO JOGO DA FORCA', end=' ')
+print('-' * 15)
 
-print('\n"', end='')
-for i, l in enumerate(h.lista_letras):
-    if i != len(h.lista_letras) - 1:
-        print(l + " ", end="")
-    else:
-        print(l, end="")
-print('"\n\n')
 h.imprimir_forca(h.chances)
 
 while h.chances > 0:
@@ -24,11 +21,17 @@ while h.chances > 0:
     if "_" in h.lista_letras:
         h.jogada()
     else:
-        print(f'\n{"".join(h.lista_letras)}')
         print('\nVocê acertou!')
+        print('A palavra é: \n')
+        print(f'\n{"".join(h.lista_letras)}')
         break
 
-    sleep(3)
+    sleep(2)
     limpar_tela()
-    print(h.palavra, "\n")
     h.imprimir_forca(h.chances)
+
+
+if h.chances == 0:
+    print('ENFORCADO!\n')
+    print(f'A palavra era: {h.palavra}')
+print('-' * 50)

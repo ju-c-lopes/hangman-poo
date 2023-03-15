@@ -1,2 +1,9 @@
-# hangman-poo
-Hangman version using poo and api to get a word
+# Hangman-poo
+<hr>
+
+Hangman game version using poo (Programming Object Oriented)<br><br>
+This version approaches the following concepts:
+<br><br>
+* Modularization
+* class
+* Get an external word from ['Dicionario Aberto']("https://api.dicionario-aberto.net/.index.html") website
