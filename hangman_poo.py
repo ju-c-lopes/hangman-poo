@@ -1,27 +1,91 @@
-import requests
-
-def buscar_palavra():
-
-    link = "https://api.dicionario-aberto.net/random"
-
-    req = requests.get(link)
-    req = req.json()
-    return req['word']
+from aux_funcs import buscar_palavra
 
 class Hangman:
-    
-    def __init__(self, palavra=buscar_palavra()):
+
+    def __init__(self, palavra=buscar_palavra):
         self.correto = False
-        self.palavra = palavra
+        self.palavra = palavra()
         self.lista_letras = ["_"] * len(self.palavra)
+        self.chances = 6
+        self.tentativas = []
+        self.erros = [
+            """
+                    ________
+                    |     |
+                    |    \\0/
+                    |     |
+                    |    / \\
+            """,
+            """
+                    ________
+                    |     |
+                    |    \\0/
+                    |     |
+                    |    /
+            """,
+            """
+                    ________
+                    |     |
+                    |    \\0/
+                    |     |
+                    |
+            """,
+            """
+                    ________
+                    |     |
+                    |    \\0/
+                    |
+                    |
+            """,
+            """
+                    ________
+                    |     |
+                    |    \\0
+                    |
+                    |
+            """,
+            """
+                    ________
+                    |     |
+                    |     0
+                    |
+                    |
+            """,
+            """
+                    ________
+                    |     |
+                    |
+                    |
+                    |
+            """,
+        ]
 
+    def jogada(self):
+        print('\nDigite uma letra: ', end='')
+        tentativa = input()
+        
+        while len(tentativa) != 1:
+            if len(tentativa) < 1:
+                print('\nVocê não digitou nada!')
+                print('\nDigite uma letra: ', end='')
+                tentativa = input()
+            if len(tentativa) > 1:
+                print('\nVocê digitou letras a mais!')
+                print('\nDigite uma letra: ', end='')
+                tentativa = input()
 
-h = Hangman()
-print(h.palavra)
+        if tentativa in self.lista_letras or tentativa in self.tentativas:
+            print('\nVocê já digitou esta letra!')
+        elif tentativa in self.palavra:
+            for i, l in enumerate(self.palavra):
+                if tentativa == l:
+                    self.lista_letras[i] = tentativa
+        else:
+            self.tentativas.append(tentativa)
+            self.chances -= 1
+            print('\nLetra não encontrada!')
 
-for i, l in enumerate(h.lista_letras):
-    if i != len(h.lista_letras) - 1:
-        print(l + " ", end="")
-    else:
-        print(l)
- 
+    def imprimir_forca(self, erro):
+        print(f'Número de chances: {erro}')
+        print('Status da forca...')
+        print(f'\n{self.erros[erro]}')
