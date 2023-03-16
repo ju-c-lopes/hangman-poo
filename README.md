@@ -1,7 +1,7 @@
 # Hangman-poo
 <hr>
 
-Hangman game version using poo (Programming Object Oriented)<br><br>
+Hangman game version using poo (Object Oriented Programming)<br><br>
 This version approaches the following concepts:
 <br><br>
 * Modularization
