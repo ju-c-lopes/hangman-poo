@@ -6,4 +6,4 @@ This version approaches the following concepts:
 <br><br>
 * Modularization
 * class
-* Get an external word from ['Dicionario Aberto']("https://api.dicionario-aberto.net/.index.html") website
+* Get an external word from [Dicionario Aberto](https://api.dicionario-aberto.net/.index.html) website
