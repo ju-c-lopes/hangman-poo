@@ -3,7 +3,7 @@ from aux_funcs import buscar_palavra
 class Hangman:
 
     def __init__(self, palavra=buscar_palavra):
-        self.correto = False
+
         self.palavra = palavra()
         self.lista_letras = ["_"] * len(self.palavra)
         self.chances = 6
